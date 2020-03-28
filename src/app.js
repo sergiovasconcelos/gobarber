@@ -3,19 +3,21 @@ import routes from './routes';
 
 import './database';
 
+class App {
+  constructor() {
+    this.server = express();
+    this.middlewares();
+    this.routes();
+  }
 
-class App{
-    constructor(){
-        this.server = express();
-        this.middlewares();
-        this.routes();
-    }
-    //Uso de middlewares globais
-    middlewares(){}
+  // Uso de middlewares globais
+  middlewares() {
+    this.server.use(express.json());
+  }
 
-    routes(){
-        this.server.use(routes);
-    }
+  routes() {
+    this.server.use(routes);
+  }
 }
 
 export default new App().server;
